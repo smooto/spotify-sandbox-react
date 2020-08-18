@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useSocket } from 'react-socket-io-hooks';
 
 export default function App() {
+  const socket = useSocket();
   const [newUri, setNewUri] = useState('');
   const [uriArray, setUriArray] = useState(['']);
 
@@ -8,6 +10,7 @@ export default function App() {
     e.preventDefault();
 
     setUriArray(uriArray.concat(newUri));
+    socket.emit('HELLO');
   };
 
   const handleChange = ({ target }) => {
