@@ -9,8 +9,9 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUriArray(uriArray.concat(newUri));
-    socket.emit('HELLO');
+    socket.emit('get uri', newUri);
+
+    socket.on('got uri', allUris => setUriArray(allUris));
   };
 
   const handleChange = ({ target }) => {
